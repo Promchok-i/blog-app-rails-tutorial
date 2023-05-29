@@ -16,7 +16,8 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <div>
+    <div class="mb-16">
+      <%= link_to "Home", root_path, class:"mr-16" %>
       <% if user_signed_in? %>
         <%= link_to "New Blog post", new_blog_post_path %>
         <%#= link_to "Profile", edit_user_registration_path %>
