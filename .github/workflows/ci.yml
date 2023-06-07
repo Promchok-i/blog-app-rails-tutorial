@@ -6,12 +6,20 @@ jobs:
     services:
       db:
         image: postgres:11
-        ports: ['5432:5432']
+         ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+      env:
+        RAILS_ENV: test
+        DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
       redis:
         image: redis
         ports: ['6379:6379']
@@ -28,10 +36,7 @@ jobs:
           cmd: install
       - name: Build and run tests
         env:
-          POSTGRES_PASSWORD: postgres
-          DATABASE_URL: postgres://postgres:@localhost:5432/test
           REDIS_URL: redis://localhost:6379/0
-          RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
           sudo apt-get -yqq install libpq-dev
