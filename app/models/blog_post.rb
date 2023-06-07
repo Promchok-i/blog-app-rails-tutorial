@@ -10,6 +10,8 @@ class BlogPost < ApplicationRecord
     scope :published, -> { where("published_at <= ?", Time.current) }
     scope :scheduled, -> { where("published_at > ?", Time.current) }
 
+    belongs_to :user
+
     def draft?
         published_at.nil?
     end

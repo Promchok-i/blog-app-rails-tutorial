@@ -9,3 +9,15 @@
 #
 # two: {}
 # column: value
+
+one:
+  id: 1
+  email: one@example.com
+
+two:
+  id: 2
+  email: two@example.com
+
+three:
+  id: 3
+  email: three@example.com
