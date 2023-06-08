@@ -6,13 +6,13 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-user = User.where(email: "test@hotmail.com").first_or_initialize
+user = User.where(email: "test@gmail.com").first_or_initialize
 user.update!(
     password: "123456",
     password_confirmation: "123456"
 )
 
-100.times do |i|
+10.times do |i|
     blog_post = BlogPost.where(title: "Blog Post #{i}").first_or_initialize
-    blog_post.update(content: "Hello world #{i}", published_at: Time.current)
+    blog_post.update(user_id: 1, content: "Hello world #{i}", published_at: Time.current)
 end
